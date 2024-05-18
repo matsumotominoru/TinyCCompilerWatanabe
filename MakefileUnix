@@ -1,0 +1,18 @@
+ 
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+tinyC: tinyC.o arm.o mips.o sub.o
+	g++ -o tinyC tinyC.o arm.o mips.o sub.o
+arm.o: sub.h /usr/include/stdio.h /usr/include/stdlib.h 
+arm.o: /usr/include/sys/stdtypes.h /usr/include/string.h arm.h arm.C
+	g++ -c -g arm.C
+mips.o: sub.h /usr/include/stdio.h /usr/include/stdlib.h
+mips.o: /usr/include/sys/stdtypes.h /usr/include/string.h arm.h mips.h mips.C
+	g++ -c -g mips.C
+sub.o: sub.h /usr/include/stdio.h /usr/include/stdlib.h
+sub.o: /usr/include/sys/stdtypes.h /usr/include/string.h arm.h mips.h sub.C
+	g++ -c -g sub.C
+tinyC.o: sub.h /usr/include/stdio.h /usr/include/stdlib.h
+tinyC.o: /usr/include/sys/stdtypes.h /usr/include/string.h arm.h mips.h tinyC.C
+	g++ -c -g tinyC.C

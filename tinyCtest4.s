@@ -1,0 +1,54 @@
+
+         .sdata
+         .comm    a,4
+         .comm    b,4
+         .comm    c,4
+         .comm    d,4
+         .comm    e,4
+         .globl   main
+         .text
+         .ent     main
+main:
+         subu     $sp,96
+         sw       $31,32+40($sp)
+         sd       $22,24+40($sp)
+         sd       $20,16+40($sp)
+         sd       $18,8+40($sp)
+         sd       $16,0+40($sp)
+         sd       $6,8+96($sp)
+         sd       $4,0+96($sp)
+         .frame   $sp,96,$31
+         .mask    0x80ff0000,-24
+         li       $8,3
+         sw       $8,a
+         li       $9,5
+         li       $10,5
+         add      $10,$10,$8
+         add      $9,$9,$10
+         sw       $9,a
+         li       $8,3
+         sw       $8,b
+         li       $10,3
+         add      $10,$10,$9
+         sw       $10,c
+         li       $11,3
+         li       $12,3
+         add      $9,$9,$12
+         add      $11,$11,$9
+         sw       $11,d
+         lw       $12,a
+         li       $13,3
+         mul      $12,$12,$13
+         add      $12,$12,$8
+         add      $12,$12,$13
+         sw       $12,e
+         li       $16,0
+         addu     $2,$16,$0
+         lw       $31,32+40($sp)
+         ld       $22,24+40($sp)
+         ld       $20,16+40($sp)
+         ld       $18,8+40($sp)
+         ld       $16,0+40($sp)
+         addu     $sp,96
+         j        $31
+         .end     main
